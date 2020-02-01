@@ -17,20 +17,25 @@ namespace CarRentalGroup5
             InitializeComponent();
         }
 
+        //Button Click event on our submit button
         private void button1_Click(object sender, EventArgs e)
         {
+            //Exception handling can be used to help with validations and error handling. 
             try
             {
+                //Collect all values from the controls and store them in variables.
                 string customerName = txtCustomerName.Text;
                 double cost = Convert.ToDouble(txtCost.Text);
+                //Retrieve Date values from the date picker controls
                 var dateRented = dtRentDate.Value;
                 var dateReturned = dtReturnDate.Value;
                 //Use the keyword var to declare a more generic variable
                 //whose data type is determined by the value being assigned. 
                 var typeOfCar = cbCarList.Text;
+                //Valid state flag. This is used to track of the data entered is valid or not. 
                 var isValid = true;
 
-                // Adding validations to the form input
+                // Adding validations to the form input.
                 if (String.IsNullOrEmpty(customerName)
                     || dateRented == null
                     || String.IsNullOrEmpty(typeOfCar))
@@ -44,7 +49,7 @@ namespace CarRentalGroup5
                     MessageBox.Show("Invalid Date Entered for Return " +
                         "Date");
                 }
-                //if(isValid == true)
+                //if(isValid == true) can also be written as follows. 
                 if (isValid)
                 {
                     MessageBox.Show($"Customer Name: {customerName}\n\r" +
@@ -57,6 +62,8 @@ namespace CarRentalGroup5
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+
+                //We comment throw to prevent the application from terminating. 
                 //throw;
             }
             
