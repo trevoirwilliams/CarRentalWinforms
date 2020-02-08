@@ -10,11 +10,13 @@ using System.Windows.Forms;
 
 namespace CarRentalGroup5
 {
-    public partial class Form1 : Form
+    public partial class AddCarRental : Form
     {
-        public Form1()
+        private readonly CarRentalDB5Entities _carRentalDB5Entities;
+        public AddCarRental()
         {
             InitializeComponent();
+            _carRentalDB5Entities = new CarRentalDB5Entities();
         }
 
         //Button Click event on our submit button
@@ -38,7 +40,7 @@ namespace CarRentalGroup5
                 // Adding validations to the form input.
                 if (String.IsNullOrEmpty(customerName)
                     || dateRented == null
-                    || String.IsNullOrEmpty(typeOfCar))
+                    || String.IsNullOrWhiteSpace(typeOfCar))
                 {
                     isValid = false;
                     MessageBox.Show("Incomplete");
@@ -52,11 +54,23 @@ namespace CarRentalGroup5
                 //if(isValid == true) can also be written as follows. 
                 if (isValid)
                 {
+                    RentalRecord record = new RentalRecord();
+                    record.cost = (decimal)cost;
+                    record.customerName = customerName;
+                    record.rentDate = dateRented;
+                    record.returnDate = dateReturned;
+                    record.typeOfCarId = (int)cbCarList.SelectedValue;
+
+                    _carRentalDB5Entities.RentalRecords.Add(record);
+                    _carRentalDB5Entities.SaveChanges();
+
                     MessageBox.Show($"Customer Name: {customerName}\n\r" +
                     $"Cost: {cost}\n\r" +
                     $"Date Rented: {dateRented}\n\r" +
                     $"Date Returned: {dateReturned}\n\r" +
                     $"Type Of Car: {typeOfCar}");
+
+                    txtCost.Clear();
                 }
             }
             catch (Exception ex)
@@ -67,7 +81,22 @@ namespace CarRentalGroup5
                 //throw;
             }
             
-            
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            var cars = _carRentalDB5Entities.TypesOfCars.ToList();
+            cbCarList.DisplayMember = "name";
+            cbCarList.ValueMember = "id";
+            cbCarList.DataSource = cars;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //Create an object of the Window you intend to show
+            MainWindow mainWindow = new MainWindow();
+            //Call the Show() function from the object
+            mainWindow.Show();
         }
     }
 }

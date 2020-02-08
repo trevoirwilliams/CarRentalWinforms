@@ -1,6 +1,6 @@
 ﻿namespace CarRentalGroup5
 {
-    partial class Form1
+    partial class AddCarRental
     {
         /// <summary>
         /// Required designer variable.
@@ -44,6 +44,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -69,12 +70,6 @@
             // 
             this.cbCarList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCarList.FormattingEnabled = true;
-            this.cbCarList.Items.AddRange(new object[] {
-            "Honda Stream",
-            "Lada",
-            "Buggy",
-            "Rust Bucket",
-            "Probox"});
             this.cbCarList.Location = new System.Drawing.Point(326, 164);
             this.cbCarList.Name = "cbCarList";
             this.cbCarList.Size = new System.Drawing.Size(242, 24);
@@ -196,11 +191,22 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(36, 458);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(185, 70);
+            this.button2.TabIndex = 16;
+            this.button2.Text = "Launch Window";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(665, 558);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.textBox4);
@@ -219,6 +225,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -242,6 +249,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 
